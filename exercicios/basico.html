@@ -7,9 +7,32 @@
     <script src="/js/vue.min.js"></script>
 </head>
 <body class="exercicio">
-
+    <div id="app"> <!-- Template do Vue -->
+        <p>1) {{ 2 + 2 }}</p> <!-- Lendo JS -->
+        <p>2) {{ "teste".toUpperCase() }}</p>
+        <p>3) Produto: {{ nome }}, R$ {{ preco }}, com {{ desconto * 100}}% de desconto</p> <!--Não é preciso de this para indicar-->
+        <p>4) Hora certa: {{ horaCerta() }}</p> <!-- Colocar os parentes para a chamada da função -->
+        <p>5) O preço com desconto da caneta é R$ {{ precoComDesconto }}</p> <!-- Valor computado -->
+    </div>
     <script>
-        // ...
+        new Vue({ //Instanciando
+            el:  "#app", //Vue irá controlar esse trecho
+            data: {
+                nome: 'Caneta',
+                preco: 6.89,
+                desconto: 0.15
+            },
+            methods:{
+                horaCerta(){
+                    return new Date().toLocaleDateString()
+                }
+            },
+            computed: {
+                precoComDesconto(){
+                    return (this.preco * (1 - this.desconto)).toFixed(2) //Para acessar dentro da instancia tem que usar o this
+                }
+            }
+        })
     </script>
 </body>
 </html>
