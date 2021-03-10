@@ -7,9 +7,28 @@
     <script src="/js/vue.min.js"></script>
 </head>
 <body class="exercicio">
+    <div id="app">
+        <p>{{ link }}</p>
+        <!-- <a href="{{ link }}"> Canal </a> Não funciona dessa maneira -->
+        <p><a v-bind:href="link">Canal</a></p> <!-- O conteúdo selecionado foi interpolado pelo Vue-->
+        <p><a :href="link">Canal</a></p> <!--Representado pelos : -->
 
+        <input type="text" v-model="nome"><br>
+        <span>{{nome}}</span>
+    </div>
     <script>
-        // ...
+        new Vue({
+            el: "#app",
+            data:{
+                nome:"Maria",
+                link: "https://youtube.com/cod3rcursos"
+            },
+            watch:{
+                nome(novoValor){
+                    console.log(novoValor.toUpperCase())
+                }
+            }
+        })
     </script>
 </body>
 </html>
