@@ -7,9 +7,35 @@
     <script src="/js/vue.min.js"></script>
 </head>
 <body class="exercicio">
-
+    <div id="app">
+        <!-- Percorrendo o Array de alunos -->
+        <p v-for="(aluno, i) in alunos"> <!-- Acessando a elemento aluno e acessando o indice -->
+            {{i+1}}) {{aluno.nome}} - {{aluno.nota}} -
+            <span v-if="aluno.nota >=9">Quadro de Honra</span> <!--Condições-->
+            <span v-else-if="aluno.nota >= 7">Aprovado</span>
+            <span v-else-if="aluno.nota >= 3">Recuperação</span>
+            <span v-else>Reprovado</span>
+        </p>
+        <ul style="list-style: none;"> 
+            <li v-for="n in 8">
+                <span v-show="n >= 4"> <!-- Mostre apenas n maior ou igual a 4 escondendo os elementos da página-->
+                    {{n}}
+                </span>
+            </li>
+        </ul>
+    </div>
     <script>
-        // ...
+        new Vue({
+            el:"#app",
+            data:{
+                alunos: [
+                    {nome: "Renan", nota: 8.9 },
+                    {nome: "Carlos", nota: 4.9 },
+                    {nome: "Caio", nota: 9.2},
+                    {nome: "Yan", nota: 1.2}
+                ]
+            }
+        })
     </script>
 </body>
 </html>
